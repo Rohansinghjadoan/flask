@@ -34,4 +34,11 @@ def get_employee(emp_id:int, db:Session= next(get_db())):
     if employee is None:
         raise HTTPException(status_code=404, detail="Employee not found")
     return employee
-    
+
+## 4. Update Employee by id
+@app.put('/employees/{emp_id}', response_model=schemas.EmployeeOut)
+def update_employee(emp_id:int, employee:schemas.EmployeeUpdate, db:Session= next(get_db())):
+    db_employee=crud.update_employee(db, emp_id, employee)
+    if db_employee is None:
+        raise HTTPException(status_code=404, detail="Employee not found")
+    return db_employee
