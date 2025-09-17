@@ -12,6 +12,6 @@ class InputSchema(BaseModel):
 
 
 class OutputSchema(BaseModel):
-    predicted_price=float
+    predicted_price : float
 
     
