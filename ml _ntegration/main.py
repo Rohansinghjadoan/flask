@@ -18,5 +18,6 @@ def predict_price(data:InputSchema):
 
 @app.post('/batch_predict',response_model=list[OutputSchema])
 def batch_predict(data:List[InputSchema]):
-    pass
+    prediction=make_batch_predictions([x.model_dump() for x in data])
+    return [OutputSchema(predicted_price=round(pred,2)) for pred in prediction]
     
