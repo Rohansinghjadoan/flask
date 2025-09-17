@@ -2,6 +2,7 @@ import joblib
 import numpy as np
 from typing import List
 
+
 saved_model = joblib.load('model.joblib')
 print('Loaded the Model')
 
@@ -21,7 +22,7 @@ def make_prediction(data: dict) -> float:
     ])
     return saved_model.predict(features)[0]
 
-
+## For batch predictions a endpoint can accept multiple inputs at once rather than one at a time in a loop in above function
 def make_batch_predictions(data: List[dict]) -> np.array:
     X = np.array([
         [
